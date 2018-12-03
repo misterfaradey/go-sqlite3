@@ -11,7 +11,7 @@ package sqlite3
 /*
 #cgo CFLAGS: -std=gnu99
 #cgo CFLAGS: -DSQLITE_ENABLE_RTREE
-#cgo CFLAGS: -DSQLITE_THREADSAFE=1
+#cgo CFLAGS: -DSQLITE_THREADSAFE=0
 #cgo CFLAGS: -DHAVE_USLEEP=1
 #cgo CFLAGS: -DSQLITE_ENABLE_FTS3
 #cgo CFLAGS: -DSQLITE_ENABLE_FTS3_PARENTHESIS
@@ -978,7 +978,7 @@ func errorString(err Error) string {
 //
 func (d *SQLiteDriver) Open(dsn string) (driver.Conn, error) {
 	if C.sqlite3_threadsafe() == 0 {
-		return nil, errors.New("sqlite library was not compiled for thread-safe operation")
+		//return nil, errors.New("sqlite library was not compiled for thread-safe operation")
 	}
 
 	var pkey string
